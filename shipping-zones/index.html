@@ -336,6 +336,14 @@ body.v4 #zoneCard, body.v4 #n1 { display: none !important; }
 /* Last tier row and fixed range column so "Retailer pays" lines up on every row */
 .trow > .tf:first-child { flex: 0 0 290px; }
 @media (max-width: 600px) { .trow > .tf:first-child { flex: 1 1 100%; } }
+/* Usability test, 27 Oct: on small screens "+ Add tier" ran out of the viewport. When the zone panel is too narrow
+   for range + fee + button on one line, the button wraps to its own line, left-aligned. */
+.tpanel { container-type: inline-size; }
+@container (max-width: 660px) {
+  .trow:has([data-badd]) { flex-wrap: wrap; }
+  .trow:has([data-badd]) .tact { flex: 1 1 100%; margin-left: 0; height: auto; }
+  .trow:has([data-badd]) .tact .pill { margin-left: 0; }
+}
 /* LUCID / EORI component (as in onboarding) */
 .idbox { background: var(--warn-soft); border-radius: 12px; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px; }
 .idbox h4 { margin: 0; font-size: 16px; font-weight: 600; color: var(--warn); }
